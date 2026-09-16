@@ -1,0 +1,10 @@
+fastapi
+uvicorn
+streamlit
+networkx
+pandas
+numpy
+scikit-learn
+pytest
+httpx
+
