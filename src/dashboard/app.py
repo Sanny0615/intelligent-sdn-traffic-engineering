@@ -1,9 +1,12 @@
-"""
-Streamlit Frontend Dashboard for Intelligent SDN Traffic Engineering.
-Communicates directly with FastAPI backend services.
-"""
-
 import os
+import sys
+from pathlib import Path
+
+# Ingest project root into sys.path for Streamlit Cloud deployment compatibility
+ROOT_DIR = Path(__file__).resolve().parent.parent.parent
+if str(ROOT_DIR) not in sys.path:
+    sys.path.insert(0, str(ROOT_DIR))
+
 import streamlit as st
 import pandas as pd
 from src.dashboard.api_client import DashboardAPIClient
@@ -24,11 +27,12 @@ default_api_url = os.getenv("API_BASE_URL", "http://localhost:8000/api/v1")
 api_base_url = st.sidebar.text_input("FastAPI Base URL", value=default_api_url)
 api_client = DashboardAPIClient(base_url=api_base_url)
 
-# Health Status Badge
+# Health Status Badge & Warning Banner
 health_data = api_client.get_health()
 if health_data.get("error"):
     st.sidebar.error("❌ FastAPI Backend Offline")
     st.sidebar.caption(health_data["message"])
+    st.warning("⚠️ Backend API is currently connecting or offline. Verify your FastAPI Base URL or launch the backend service.")
 else:
     st.sidebar.success(f"🟢 Backend Online (v{health_data.get('version', '1.0')})")
 

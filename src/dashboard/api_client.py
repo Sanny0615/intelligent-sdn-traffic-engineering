@@ -1,10 +1,12 @@
-"""
-API Client Helper for Streamlit Dashboard.
-Handles HTTP communication with FastAPI backend endpoints with graceful exception handling.
-"""
-
+import os
+import sys
+from pathlib import Path
 from typing import Dict, Any
 import httpx
+
+ROOT_DIR = Path(__file__).resolve().parent.parent.parent
+if str(ROOT_DIR) not in sys.path:
+    sys.path.insert(0, str(ROOT_DIR))
 
 
 class DashboardAPIClient:
