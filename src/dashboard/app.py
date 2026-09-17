@@ -23,7 +23,7 @@ st.set_page_config(
 st.sidebar.title("🌐 SDN TE Dashboard")
 st.sidebar.markdown("---")
 
-default_api_url = os.getenv("API_BASE_URL", "http://localhost:8000/api/v1")
+default_api_url = os.getenv("API_BASE_URL", "https://intelligent-sdn-traffic-engineering.onrender.com/api/v1")
 api_base_url = st.sidebar.text_input("FastAPI Base URL", value=default_api_url)
 api_client = DashboardAPIClient(base_url=api_base_url)
 

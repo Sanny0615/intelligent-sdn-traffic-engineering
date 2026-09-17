@@ -14,7 +14,7 @@ class DashboardAPIClient:
     HTTP API Client communicating with FastAPI backend service.
     """
 
-    def __init__(self, base_url: str = "http://localhost:8000/api/v1", timeout: float = 10.0):
+    def __init__(self, base_url: str = "https://intelligent-sdn-traffic-engineering.onrender.com/api/v1", timeout: float = 10.0):
         self.base_url = base_url.rstrip("/")
         self.timeout = timeout
 
